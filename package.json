@@ -1,7 +1,6 @@
 {
   "name": "react_ums",
   "version": "1.0.0",
-  "description": "",
   "type": "module",
   "main": "index.js",
   "scripts": {
@@ -17,9 +16,11 @@
     "express": "^4.18.3",
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.2.0"
+    "mongoose": "^8.2.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.0"
-  }
+  },
+  "keywords": [],
+  "description": ""
 }
