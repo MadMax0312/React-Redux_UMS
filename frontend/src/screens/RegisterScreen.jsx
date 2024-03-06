@@ -20,7 +20,7 @@ const RegisterScreen = () => {
 
         <Form onSubmit={ submitHandler }>
 
-        <Form.Group classname='my-2' controlId='name'>
+        <Form.Group className='my-2' controlId='name'>
                 <Form.Label>Username</Form.Label>
                 <Form.Control
                 type='text'
@@ -31,7 +31,7 @@ const RegisterScreen = () => {
                 </Form.Control>
             </Form.Group>
 
-            <Form.Group classname='my-2' controlId='email'>
+            <Form.Group className='my-2' controlId='email'>
                 <Form.Label>Email Address</Form.Label>
                 <Form.Control
                 type='email'
@@ -42,7 +42,7 @@ const RegisterScreen = () => {
                 </Form.Control>
             </Form.Group>
 
-            <Form.Group classname='my-2' controlId='password'>
+            <Form.Group className='my-2' controlId='password'>
                 <Form.Label>Password</Form.Label>
                 <Form.Control
                 type='password'
@@ -53,7 +53,7 @@ const RegisterScreen = () => {
                 </Form.Control>
             </Form.Group>
 
-            <Form.Group classname='my-2' controlId='confirmPassword'>
+            <Form.Group className='my-2' controlId='confirmPassword'>
                 <Form.Label>Confirm Password</Form.Label>
                 <Form.Control
                 type='password'
@@ -66,11 +66,11 @@ const RegisterScreen = () => {
 
             <br />
 
-            <Button type='submit' variant='primary' classname='mt-3'>
+            <Button type='submit' variant='primary' className='mt-3'>
                 Sign Up
             </Button>
  
-            <Row classname='py-3'>
+            <Row className='py-3'>
                 <Col>
                 Already have an account? <Link to='/login'>Sign In</Link>
                 </Col>

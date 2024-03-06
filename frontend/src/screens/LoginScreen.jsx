@@ -17,7 +17,7 @@ const LoginScreen = () => {
         <h1>Sign In</h1>
 
         <Form onSubmit={ submitHandler }>
-            <Form.Group classname='my-2' controlId='email'>
+            <Form.Group className='my-2' controlId='email'>
                 <Form.Label>Email Address</Form.Label>
                 <Form.Control
                 type='email'
@@ -28,7 +28,7 @@ const LoginScreen = () => {
                 </Form.Control>
             </Form.Group>
 
-            <Form.Group classname='my-2' controlId='password'>
+            <Form.Group className='my-2' controlId='password'>
                 <Form.Label>Password</Form.Label>
                 <Form.Control
                 type='password'
@@ -41,11 +41,11 @@ const LoginScreen = () => {
 
             <br />
 
-            <Button type='submit' variant='primary' classname='mt-3'>
+            <Button type='submit' variant='primary' className='mt-3'>
                 Sign In
             </Button>
 
-            <Row classname='py-3'>
+            <Row className='py-3'>
                 <Col>
                 New User? <Link to='/register'>Register</Link>
                 </Col>
