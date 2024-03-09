@@ -1,6 +1,11 @@
-import jwt from 'jsonwebtoken';
+import jwt from 'jsonwebtoken'; // To protect routes that require authentication
 import asyncHandler from 'express-async-handler';
 import User from '../models/userModel.js'
+
+// it checks for a valid JWT (JSON Web Token) in the request cookies and verifies it using the jsonwebtoken library.
+ //If the token is valid, it decodes the token to extract the user ID and then fetches the user from the database 
+ //using User.findById(decoded.userId). The user object is then attached to the request (req.user) for use in 
+ //subsequent middleware or route handlers.
 
 const protect = asyncHandler(async (req, res, next) => {
     let token;
