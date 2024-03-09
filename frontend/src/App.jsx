@@ -8,7 +8,7 @@ const App = () => {
     return (
         <>
             <Header />
-            <ToastContainer/>
+            <ToastContainer autoClose={2000}/>
             <Container className='my-2'>
             <Outlet />
             </Container>

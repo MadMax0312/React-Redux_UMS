@@ -1,22 +1,18 @@
 import { useEffect, useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { Form, Button } from 'react-bootstrap'
 import { useUpdateUserMutation } from "../slices/usersApiSlice"
 import FormContainer  from '../components/FrontContainer'
 import { setCredentials } from "../slices/authSlice"
 import { toast } from "react-toastify";
-import Loader from "../components/Loader"
+import Loader from "../components/Loader";
 
 const ProfileScreen = () => {
 
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [confirmPassword, setConfirmPassword] = useState('')
 
     const dispatch = useDispatch()
-    const navigate = useNavigate()
 
     const { userInfo } = useSelector((state) => state.auth);
 
@@ -25,20 +21,23 @@ const ProfileScreen = () => {
     useEffect(() => {
         setName(userInfo.name);
         setEmail(userInfo.email);
-    }, [userInfo.setName, userInfo.setEmail])
+    }, [userInfo])
 
     const submitHandler = async (e) => {
         e.preventDefault();
 
-        if(password !== confirmPassword) {
-            toast.error('Passwords do not match')
-        }else {
+        if (name.trim().length === 0 ) {
+            toast.error('Username cannot be empty')
+        } else if(name.trim().length > 7){
+            toast.error('Username length cannot be greater than 7')
+        }else if(userInfo.name === name.trim()) {
+            toast.info('No changes made')
+        }
+        else{
             try {
                 const res = await updateProfile({
                     _id:userInfo._id,
-                    name,
-                    email,
-                    password
+                    name
                 }).unwrap();
                 dispatch(setCredentials({...res}));
                 toast.success("Profile Updated");
@@ -70,29 +69,8 @@ const ProfileScreen = () => {
                 type='email'
                 placeholder='Enter Email'
                 value={email}
+                readOnly
                 onChange={ (e) => setEmail(e.target.value) }
-                >
-                </Form.Control>
-            </Form.Group>
-
-            <Form.Group className='my-2' controlId='password'>
-                <Form.Label>Password</Form.Label>
-                <Form.Control
-                type='password'
-                placeholder='Enter Password'
-                value={password}
-                onChange={ (e) => setPassword(e.target.value) }
-                >
-                </Form.Control>
-            </Form.Group>
-
-            <Form.Group className='my-2' controlId='confirmPassword'>
-                <Form.Label>Confirm Password</Form.Label>
-                <Form.Control
-                type='password'
-                placeholder='Confirm Password'
-                value={confirmPassword}
-                onChange={ (e) => setConfirmPassword(e.target.value) }
                 >
                 </Form.Control>
             </Form.Group>

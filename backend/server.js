@@ -5,7 +5,8 @@ import cookieParser from "cookie-parser";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 import connectDB from "./config/db.js";
 
-import userRoutes from './routes/userRoutes.js'
+import userRoutes from './routes/userRoutes.js';
+import adminRoutes from './routes/adminRoutes.js'
 
 connectDB(); 
 
@@ -17,7 +18,8 @@ app.use(express.urlencoded({extended:true})) // to allow to send form data
 
 app.use(cookieParser())
 
-app.use('/api/users', userRoutes)
+app.use('/api/users', userRoutes);
+app.use('/api/admin', adminRoutes);
 
 app.get('/',(req, res)=>res.send('Hello World'))
 

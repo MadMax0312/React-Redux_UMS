@@ -7,6 +7,7 @@ import { setCredentials } from "../slices/authSlice"
 import { toast } from "react-toastify";
 import Loader from "../components/Loader"
 import { useRegisterMutation } from "../slices/usersApiSlice"
+import validateForm from "../formValidation"
 
 const RegisterScreen = () => {
 
@@ -30,20 +31,19 @@ const RegisterScreen = () => {
 
     const submitHandler = async (e) => {
         e.preventDefault();
-
-        if(password !== confirmPassword) {
-            toast.error('Passwords do not match')
-        }else {
+    
+        if (validateForm(name, email, password, confirmPassword)) {
             try {
                 const res = await register({ name, email, password }).unwrap();
                 dispatch(setCredentials({ ...res }));
-                navigate('/')
-                toast.success('Successfully Registered')
+                navigate('/');
+                toast.success('Successfully Registered');
             } catch (err) {
-                toast.error(err?.data?.message || err.error)
+                toast.error(err?.data?.message || err.error);
             }
         }
-    }
+    };
+    
   return (
     <FormContainer>
         <h1>Sign Up</h1>

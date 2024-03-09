@@ -21,7 +21,7 @@ const Header = () => {
             dispatch(logout()); // clears the local Storage
             navigate('/')
         } catch (err) {
-            console.log(er)
+            console.log(err)
         }
 
     }
