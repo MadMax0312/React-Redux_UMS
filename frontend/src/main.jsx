@@ -11,7 +11,7 @@ import { Provider } from "react-redux";
 import App from "./App.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
-import PrivateRoute from "./components/PrivateRoute.jsx";
+
 import HomeScreen from "./screens/userSceens/HomeScreen.jsx";
 import LoginScreen from "./screens/userSceens/LoginScreen.jsx";
 import RegisterScreen from "./screens/userSceens/RegisterScreen.jsx";
@@ -19,6 +19,8 @@ import ProfileScreen from "./screens/userSceens/ProfileScreen.jsx";
 import AdminScreen from "./screens/adminScreens/AdminScreen.jsx";
 import AdminLogin from "./screens/adminScreens/AdminLogin.jsx";
 import Dashboard from "./screens/adminScreens/Dashboard.jsx";
+import EditScreen from "./screens/adminScreens/EditUser.jsx";
+import { AdminPrivateRoute, PrivateRoute } from "./components/PrivateRoute.jsx";
 
 const router = createBrowserRouter( //creates browser router instance
     createRoutesFromElements(
@@ -38,6 +40,13 @@ const router = createBrowserRouter( //creates browser router instance
             <Route path="/admin" element={<AdminScreen />} />
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/admin/dashboard" element={<Dashboard />} />
+            <Route path="/admin/deleteUser/:id" element={<Dashboard />} />
+
+            <Route path="" element={<AdminPrivateRoute />}>
+            <Route path="/admin/editUser/:id" element={<EditScreen />} />
+            </Route>
+            
+
         </Route>
         </>
 

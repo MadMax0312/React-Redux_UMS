@@ -1,4 +1,6 @@
 // EndPoints to work with the backend
+// Mutation is used to send data to the server not to fetch
+// to fech data we use query
 
 import { apiSlice } from "./apiSlice";
 
@@ -19,14 +21,32 @@ export const adminApiSlice = apiSlice.injectEndpoints({
                 method: "POST",
             }),
         }),
-        dashboard: builder.mutation({
-            query: (data) => ({
+        getUsers: builder.query({
+            query: () => ({
                 url: `${ADMIN_URL}/dashboard`,
                 method: "GET",
-                body: data,
             }),
         }),
+        editUsers: builder.query({
+            query: (id) => ({
+                url: `${ADMIN_URL}/editUser/${id}`,
+                method: "GET",
+            })
+        }),
+        updateUsers: builder.mutation({
+            query: ({ _id, name }) => ({ 
+                url: `${ADMIN_URL}/editUser/${_id}`, 
+                method: "PUT",
+                body: { name }, 
+            })
+        }),
+        deleteUser: builder.mutation({
+            query: (id) => ({
+                url: `${ADMIN_URL}/deleteUser/${id}`,
+                method: "POST",
+            })
+        })
     }),
 });
 
-export const { useAdminloginMutation, useAdminlogoutMutation, useDashboardMutation } = adminApiSlice;
+export const { useAdminloginMutation, useAdminlogoutMutation, useGetUsersQuery, useEditUsersQuery, useUpdateUsersMutation, useDeleteUserMutation } = adminApiSlice;

@@ -6,4 +6,12 @@ const PrivateRoute = () => {
     return userInfo ? <Outlet /> : <Navigate to='/login' replace />
 };
 
-export default PrivateRoute;
+const AdminPrivateRoute = () => {
+    const { adminInfo } = useSelector((state) => state.adminAuth);
+    return adminInfo ? <Outlet /> : <Navigate to='/admin/login' replace />
+}
+
+export {
+    PrivateRoute,
+    AdminPrivateRoute
+};

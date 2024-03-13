@@ -7,7 +7,7 @@ import connectDB from "./config/db.js";
 
 import userRoutes from './routes/userRoutes.js';
 import adminRoutes from './routes/adminRoutes.js'
-
+ 
 connectDB(); 
 
 const app = express();
