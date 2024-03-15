@@ -13,7 +13,7 @@ const Admin = () => {
                 {/* <h1 className="text-center mb-4">ADMIN</h1> */}
                     <h1 className="text-center mb-4">Welcome {adminInfo && adminInfo.name}</h1>
                     { adminInfo ? 
-                    <div>
+                    <div className="d-flex flex-column align-items-center">
                         <h3 className="text-center mb-4">Good to Have you back!!</h3>
                         <LinkContainer to="/admin/dashboard">
                         <Button variant="primary" className="me-3">
@@ -24,14 +24,13 @@ const Admin = () => {
                     
                          : 
                     
-                    <div className="d-flex">
-                        <h4>Please login to Continue</h4>
-                        <LinkContainer to="/admin/login">
-                            <Button variant="primary" className="me-3">
-                                Sign In
-                            </Button>
-                        </LinkContainer>
-                    </div>
+                         <div className="d-flex flex-column align-items-center">
+                         <h4 className="mb-3">Please login to Continue</h4>
+                         <LinkContainer to="/admin/login">
+                             <Button variant="primary">Sign In</Button>
+                         </LinkContainer>
+                     </div>
+                     
                     }
                 </Card>
             </Container>

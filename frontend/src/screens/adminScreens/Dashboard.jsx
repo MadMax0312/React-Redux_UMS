@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDeleteUserMutation, useGetUsersQuery } from "../../slices/adminApiSlice";
-import { Table, Button, Modal } from "react-bootstrap";
+import { Table, Button, Modal, FormControl } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { toast } from "react-toastify";
 
@@ -9,6 +9,7 @@ const Dashboard = () => {
     const [showConfirmation, setShowConfirmation] = useState(false);
     const [deleteUserId, setDeleteUserId] = useState(null);
     const [deleteApiCall] = useDeleteUserMutation();
+    const [searchQuery, setSearchQuery] = useState("");
 
     useEffect(() => {
         refetch();
@@ -16,22 +17,35 @@ const Dashboard = () => {
 
     const handleDelete = async () => {
         try {
-            await deleteApiCall(deleteUserId)
+            await deleteApiCall(deleteUserId);
             console.log(`Deleting user with ID: ${deleteUserId}`);
             // Refetch the user list after successful deletion
             await refetch();
             setShowConfirmation(false);
-            toast.success('User Deleted')
+            toast.success('User Deleted');
         } catch (error) {
             console.error("Failed to delete user:", error);
         }
     };
 
+    const filteredUsers = users?.filter(
+        (user) =>
+            user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            user.email.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
     return (
         <div>
             <h1>User Dashboard</h1>
+            <FormControl
+                type="text"
+                placeholder="Search by name or email"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="mb-3"
+            />
             {isLoading && <p>Loading...</p>}
-            {users ? (
+            {filteredUsers?.length ? (
                 <Table striped bordered hover responsive>
                     <thead>
                         <tr>
@@ -41,7 +55,7 @@ const Dashboard = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {users.map((user, index) => (
+                        {filteredUsers.map((user, index) => (
                             <tr key={index}>
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
@@ -50,14 +64,24 @@ const Dashboard = () => {
                                         <Button variant="primary">Edit</Button>
                                     </LinkContainer>
                                     &nbsp;&nbsp;
-                                    <Button variant="danger" onClick={() => {
-                                        setDeleteUserId(user._id);
-                                        setShowConfirmation(true);
-                                    }}>Delete</Button>
+                                    <Button
+                                        variant="danger"
+                                        onClick={() => {
+                                            setDeleteUserId(user._id);
+                                            setShowConfirmation(true);
+                                        }}
+                                    >
+                                        Delete
+                                    </Button>
                                 </td>
                             </tr>
                         ))}
                     </tbody>
+                    <br />
+                    <LinkContainer to='/admin/addUser'>
+                    <Button>
+                        Add new User
+                    </Button></LinkContainer>
                 </Table>
             ) : (
                 <p>No Users Available</p>

@@ -9,6 +9,8 @@ import Loader from "../../components/Loader";
 
 const ProfileScreen = () => {
 
+    const data = createContext(res)
+
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
 

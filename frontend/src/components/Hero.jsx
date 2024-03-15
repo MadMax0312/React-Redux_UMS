@@ -1,6 +1,9 @@
 import { Container, Card, Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { useDispatch, useSelector } from "react-redux"
+import React, { useState } from "react";
+import { createContext } from "react";
+import ProfileScreen from "../screens/userSceens/ProfileScreen";
 
 const Hero = () => {
 
@@ -24,6 +27,17 @@ const Hero = () => {
                             <Button variant="secondary">Register</Button>
                         </LinkContainer>
                     </div>
+
+
+                    <Button onClick={handleIncrement}>
+                        increment
+                    </Button>
+
+                    <res.Provider value={count}>
+                        <ProfileScreen />
+                    </res.Provider>
+
+
                 </Card>
             </Container>
         </div>

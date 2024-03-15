@@ -21,6 +21,7 @@ import AdminLogin from "./screens/adminScreens/AdminLogin.jsx";
 import Dashboard from "./screens/adminScreens/Dashboard.jsx";
 import EditScreen from "./screens/adminScreens/EditUser.jsx";
 import { AdminPrivateRoute, PrivateRoute } from "./components/PrivateRoute.jsx";
+import AddUser from "./screens/adminScreens/AddUser.jsx";
 
 const router = createBrowserRouter( //creates browser router instance
     createRoutesFromElements(
@@ -41,6 +42,7 @@ const router = createBrowserRouter( //creates browser router instance
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/admin/dashboard" element={<Dashboard />} />
             <Route path="/admin/deleteUser/:id" element={<Dashboard />} />
+            <Route path="/admin/addUser" element={<AddUser />} />
 
             <Route path="" element={<AdminPrivateRoute />}>
             <Route path="/admin/editUser/:id" element={<EditScreen />} />

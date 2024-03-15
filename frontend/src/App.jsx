@@ -8,11 +8,18 @@ import AdminHeader from "./components/AdminHeader";
 
 const App = () => {
 
-    const { userInfo } = useSelector((state) => state.auth)
+
+    const renderHeader = () => {
+        if (window.location.pathname.includes("/admin")) {
+            return <AdminHeader />;
+        } else {
+            return <Header />;
+        }
+    };
 
     return (
         <>
-            { userInfo ? <Header/> : <AdminHeader />}
+            {renderHeader ()}
             <ToastContainer autoClose={2000}/>
             <Container className='my-2'>
             <Outlet />
